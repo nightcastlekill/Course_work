@@ -37,7 +37,6 @@ struct StudentBookNumber {
 };
 
 // пол
-// true Ц мужской, false Ц женский
 struct Sex {
 	string sex;
 };

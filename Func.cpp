@@ -10,6 +10,7 @@
 
 using namespace std;
 
+//возвращает кол-во студентов в базе данных
 int getAmountOfStudents() {
     string buffer;
     int count = 0;
@@ -29,6 +30,7 @@ int getAmountOfStudents() {
     return count;
 }
 
+//проверка, находится ли значение в интервале min < value <max
 bool checkForValue(int min, int value, int max) {
 	if (min <= value && value <= max) {
 		return true;
@@ -43,6 +45,7 @@ bool checkForValue(int min, int value, int max) {
 	}
 }
 
+//введение только букв с клавиатуры
 string getAlpha(string whatToEnter) {
 	string output = "";
 	char letter = 0;
@@ -66,20 +69,24 @@ string getAlpha(string whatToEnter) {
 	return output;
 }
 
+//перенос курсора. Не использование я избежал, но показал знание
 void gotoxy(short x, short y)
 {
 	COORD p = { x, y };
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), p);
 }
 
+//геттер для получения оценок из локальных данных
 int Student::getMark(int i, int j) {
 	return session.mark[i][j];
 }
 
+//геттер для получения номера зачетной книги из локальных данных
 string Student::getStudentBook() {
 	return studentbook_number.student_book_number;
 }
 
+//введение только чисел с клавиатуры
 int getDigit(string whatToEnter) {
 	string output = "";
 	char letter = 0;
@@ -100,16 +107,17 @@ int getDigit(string whatToEnter) {
 	}
 	return atoi(output.c_str());
 }
-
-//(student[o].getMark(i, j) == 5 || student[o].getMark(i, j) == 4 || student[o].getMark(i, j) == 1 || student[o].getMark(i, j) == -1) &&
+//функция, выполняющая сортировку по варианту
 void task(Student* student) {
 	bool filtr_check = false;
 	int sc = getAmountOfStudents();
+	int amoutn = sc;
+	float u[1000];
 	Student* students = new Student[sc];
 	for (int t = 0; t < sc; t++) {
 		students[t].readFromFile(t);
 	}
-	
+
 	//сортрую всех студентов по номеру студака
 	for (int i = 0; i < sc; i++) {
 		bool flag = true;
@@ -120,7 +128,8 @@ void task(Student* student) {
 			}
 		}
 	}
-
+	
+	//вывожу табличку с отличниками
 	cout << "Отличники и хорошисты:\n";
 	for (int o = 0; o < sc; o++) {
 		bool brk = false;
@@ -143,6 +152,7 @@ void task(Student* student) {
 		}
 	}
 
+	//вывожу таблицу с троечниками
 	cout << "\n\n\nТроечники и двоечники:\n";
 	for (int o = 0; o < sc; o++) {
 		bool brk = false;

@@ -589,6 +589,7 @@ void Student::editStudent(Student* student, int student_count) {
 			student[requred_student].getStudentbookNumber();
 			break;
 		case 10:
+			cout << "Надеемся вы просто перепутали пол при записи студента)))" << endl;
 			student[requred_student].getSex();
 			break;
 		case 11:
